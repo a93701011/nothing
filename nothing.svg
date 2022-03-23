@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 640 640" preserveAspectRatio="xMidYMid meet">
+	<defs>
+		<filter id="squiggly1" x="-50%" y="-50%" width="200%" height="200%">
+			<feTurbulence id="turbulence1" baseFrequency=".001" numOctaves="1" result="noise" seed="1">
+			</feTurbulence>
+			<feDisplacementMap xChannelSelector="A" yChannelSelector="A" in="SourceGraphic" in2="noise" scale="35">
+			</feDisplacementMap>
+			<animate xlink:href="#turbulence1" attributeName="seed" from="1" to="4" dur=".4s" repeatCount="indefinite">
+			</animate>
+		</filter>
+		<filter id="squiggly2" x="-50%" y="-50%" width="200%" height="200%">
+			<feTurbulence id="turbulence2" baseFrequency=".002" numOctaves="1" result="noise" seed="1">
+			</feTurbulence>
+			<feDisplacementMap xChannelSelector="A" yChannelSelector="A" in="SourceGraphic" in2="noise" scale="30">
+			</feDisplacementMap>
+			<animate xlink:href="#turbulence2" attributeName="seed" from="3" to="8" dur=".6s" repeatCount="indefinite">
+			</animate>
+			<filter id="squiggly4" x="-50%" y="-50%" width="200%" height="200%">
+				<feTurbulence id="turbulence4" baseFrequency=".002" numOctaves="1" result="noise" seed="1">
+				</feTurbulence>
+				<feDisplacementMap xChannelSelector="A" yChannelSelector="A" in="SourceGraphic" in2="noise" scale="20">
+				</feDisplacementMap>
+				<animate xlink:href="#turbulence4" attributeName="seed" from="5" to="9" dur=".5s" repeatCount="indefinite">
+				</animate>
+			</filter>
+			<filter id="squiggly5" x="-50%" y="-50%" width="200%" height="200%">
+				<feTurbulence id="turbulence5" baseFrequency=".0015" numOctaves="1" result="noise" seed="1">
+				</feTurbulence>
+				<feDisplacementMap xChannelSelector="A" yChannelSelector="A" in="SourceGraphic" in2="noise" scale="40">
+				</feDisplacementMap>
+				<animate xlink:href="#turbulence5" attributeName="seed" from="6" to="9" dur=".4s" repeatCount="indefinite">
+				</animate>
+			</filter>
+		</filter>
+	</defs>
+	<rect x="0" y="0" width="640" height="640" fill="#b2647e" fill-opacity="0.8561337916180491">
+	</rect>
+	<path fill="#422526" stroke="none" d="M463,547.5Q234,692,190.5,336T278,-35.5T550.5,176T463,547.5Z" filter="url(#squiggly1)" fill-opacity="0.5292892512748949">
+	</path>
+	<path fill="none" stroke="#5d4a78" d="M214.5,67.5Q464,-37,481.5,312T218.5,515.5T-48.5,271T214.5,67.5Z" stroke-width="24" filter="url(#squiggly4)">
+	</path>
+	<path fill="#ff531e" stroke="none" d="M261.5,240.5Q366,163,408.5,290Z" filter="url(#squiggly2)" fill-opacity="0.75">
+	</path>
+	<g filter="url(#squiggly5)" opacity="0.75">
+		<circle fill="#ffffff" r="56" transform="matrix(1 0 0 1 173 453)">
+		</circle>
+		<circle fill="#000000" r="6" transform="matrix(1 0 0 1 145 425)">
+		</circle>
+	</g>
+	<g filter="url(#squiggly5)" opacity="0.75">
+		<circle fill="#ffffff" r="57" transform="matrix(1 0 0 1 546 292)">
+		</circle>
+		<circle fill="#000000" r="41" transform="matrix(1 0 0 1 517.5 263.5)">
+		</circle>
+	</g>
+</svg>

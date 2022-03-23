@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FXHASH project</title>
+    <meta charset="utf-8">
+    <script id="fxhash-snippet">
+      //---- do not edit the following code (you can indent as you wish)
+      let alphabet = "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ"
+      var fxhash = "oo" + Array(49).fill(0).map(_=>alphabet[(Math.random()*alphabet.length)|0]).join('')
+      //let fxhash = "0x3d92ed8436f98353e4f31bd51cea250413636909f88ad97ca9c2652d8b13ad8d"
+      //let fxhash = "oodrFPEQaAmD1GvRcCP2Xx1QmzwLxezUmV3PsEpYPBSzFeJVeGD"
+
+      let b58dec = (str) => str.split('').reduce((p,c,i) => p + alphabet.indexOf(c) * (Math.pow(alphabet.length, str.length-i-1)), 0)
+      let fxhashTrunc = fxhash.slice(2)
+      let regex = new RegExp(".{" + ((fxhash.length/4)|0) + "}", 'g')
+      let hashes = fxhashTrunc.match(regex).map(h => b58dec(h))
+      let sfc32 = (a, b, c, d) => {
+        return () => {
+          a |= 0; b |= 0; c |= 0; d |= 0
+          var t = (a + b | 0) + d | 0
+          d = d + 1 | 0
+          a = b ^ b >>> 9
+          b = c + (c << 3) | 0
+          c = c << 21 | c >>> 11
+          c = c + t | 0
+          return (t >>> 0) / 4294967296
+        }
+      }
+      var fxrand = sfc32(...hashes)
+      //---- /do not edit the following code
+    </script>
+
+    <link rel="stylesheet" href="./style.css">
+
+    <!-- if you need to import js scripts do it here -->
+  </head>
+  <body>
+   
+    <div id="container">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  viewBox="0 0 640 640" preserveAspectRatio="xMidYMid meet">
+      <defs>
+          <filter id="squiggly1" x='-50%' y='-50%' width='200%' height="200%">
+            <feTurbulence id="turbulence1" baseFrequency=".001" numOctaves="1" result="noise" seed="1"/>
+      <feDisplacementMap xChannelSelector="A" yChannelSelector="A" in="SourceGraphic" in2="noise" scale="35" />
+         <animate 
+            xlink:href="#turbulence1"
+            attributeName="seed"
+            from="1"
+            to="4"
+            dur=".4s"
+            RepeatCount="indefinite"
+          /> 
+        </filter>
+        <filter id="squiggly2" x='-50%' y='-50%' width='200%' height="200%">
+          <feTurbulence id="turbulence2" baseFrequency=".002" numOctaves="1" result="noise" seed="1"/>
+      <feDisplacementMap xChannelSelector="A" yChannelSelector="A" in="SourceGraphic" in2="noise" scale="30" />
+       <animate 
+          xlink:href="#turbulence2"
+          attributeName="seed"
+          from="3"
+          to="8"
+          dur=".6s"
+          RepeatCount="indefinite"
+        /> 
+      
+      <filter id="squiggly4" x='-50%' y='-50%' width='200%' height="200%">
+        <feTurbulence id="turbulence4" baseFrequency=".002" numOctaves="1" result="noise" seed="1"/>
+      <feDisplacementMap xChannelSelector="A" yChannelSelector="A" in="SourceGraphic" in2="noise" scale="20" />
+      <animate xlink:href="#turbulence4" attributeName="seed"from="5" to="9" dur=".5s" RepeatCount="indefinite"/> 
+    </filter>
+    <filter id="squiggly5" x='-50%' y='-50%' width='200%' height="200%">
+    <feTurbulence id="turbulence5" baseFrequency=".0015" numOctaves="1" result="noise" seed="1"/>
+    <feDisplacementMap xChannelSelector="A" yChannelSelector="A" in="SourceGraphic" in2="noise" scale="40" />
+   <animate xlink:href="#turbulence5" attributeName="seed" from="6" to="9" dur=".4s" RepeatCount="indefinite"/> 
+  </filter>
+        </defs>
+     </svg>
+
+    
+    </div>
+  </body>
+</html>
